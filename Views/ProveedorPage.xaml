@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:EjercicioCRUDMvvm.ViewModels"
+             x:Class="EjercicioCRUDMvvm.Views.ProveedorPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:ProveedorViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label Text="Registro de Proveedores" FontSize="24" HorizontalOptions="Center" />
+
+            <Entry Placeholder="Nombre" Text="{Binding Nombre}" />
+            <Entry Placeholder="Teléfono" Text="{Binding Telefono}" Keyboard="Telephone" />
+            <Entry Placeholder="Dirección" Text="{Binding Direccion}" />
+            <Entry Placeholder="Empresa" Text="{Binding Empresa}" />
+
+            <HorizontalStackLayout Spacing="10">
+                <Button Text="Guardar" Command="{Binding SaveCommand}" />
+                <Button Text="Eliminar" Command="{Binding DeleteCommand}" />
+            </HorizontalStackLayout>
+
+            <Label Text="Lista de Proveedores" FontSize="18" />
+
+            <CollectionView ItemsSource="{Binding Proveedores}" SelectionMode="Single" SelectedItem="{Binding SelectedProveedor}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="Gray" CornerRadius="8" Padding="10" Margin="5">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Nombre}" FontAttributes="Bold" />
+                                <Label Text="{Binding Empresa}" />
+                                <Label Text="{Binding Telefono}" />
+                                <Label Text="{Binding Direccion}" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
